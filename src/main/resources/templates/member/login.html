@@ -10,7 +10,21 @@
 
     <form>
         <div>
-            <input type="text" name="user">
+            <input type="text" name="userId" placeholder="이메일을 입력하세요." required/>
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="비밀번호를 입력하세요." required/>
+        </div>
+        <div>
+            <input type="checkbox" name="remId" value="true"/>
+            <label>아이디 저장</label>
+        </div>
+        <div>
+            <input type="checkbox" name="autoLogin" value="true"/>
+            <label>자동 로그인</label>
+        </div>
+        <div>
+            <button type="submit">로그인</button>
         </div>
     </form>
 
