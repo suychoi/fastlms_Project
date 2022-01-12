@@ -11,22 +11,16 @@
 
         if(result == true){
             alert("회원가입에 성공했습니다.")
+            window.location.href = 'http://localhost:8080/member/login';
         } else if(result == false){
             alert("회원가입에 실패했습니다..")
+            window.location.href = 'http://localhost:8080/member/register';
         }
     }
     /*]]>*/
 </script>
 <body>
 <h1>회원가입 결과</h1>
-<div th:replace="/fragments/layout.html :: fragment-body-menu"></div>
-<div>
-    <div th:if="${result eq true}">
-        <meta http-equiv="refresh" content="0;url=http://localhost:8080/member/login"/>
-    </div>
-    <div th:if="${result eq false}">
-        <meta http-equiv="refresh" content="0;url=http://localhost:8080/member/register"/>
-    </div>
 </div>
 </body>
 </html>
