@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:43306/
+    url: jdbc:mariadb://localhost:43306/csy
     driver-class-name: org.mariadb.jdbc.Driver
-    username:
-    password: 
+    username: minicampus_user
+    password: 1111
 
   jpa:
     generate-ddl: true
@@ -14,7 +14,7 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: 
+    username: suyeolg3@gmail.com
     password: 
     properties:
       mail:
