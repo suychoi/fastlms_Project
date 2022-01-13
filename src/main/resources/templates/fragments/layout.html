@@ -7,13 +7,24 @@
 <body>
     <div th:fragment="fragment-body-menu">
         <div>
-            <a href="/member/">신고 & 조회</a>
+            <a href="/report/list">신고 및 조회</a>
             |
-            <a href="/member/">알림마당</a>
+            <a href="/notice/">알림마당</a>
             |
             <a href="/member/login">로그인</a>
             |
             <a href="/member/register">회원가입</a>
+        </div>
+        <hr>
+    </div>
+
+    <div th:fragment="member-body-menu">
+        <div>
+            <a href="/report/list">신고 및 조회</a>
+            |
+            <a href="/notice/">알림마당</a>
+            |
+            <a href="/member/logout">로그아웃</a>
         </div>
         <hr>
     </div>

@@ -10,9 +10,10 @@
 <div>
     <h3>로그인 정보 입력</h3>
 </div>
-<form>
+<form method="post">
     <div>
-        <input type="text" name="userEmail" placeholder="이메일을 입력하세요." required/>
+        <input type="text" name="username" placeholder="이메일을 입력하세요." required/>
+        <span th:text="${errorMessage}"></span>
     </div>
     <div>
         <input type="password" name="password" placeholder="비밀번호를 입력하세요." required/>
