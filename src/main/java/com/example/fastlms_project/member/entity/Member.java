@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,6 +21,7 @@ public class Member {
     private String userName;
     private String password;
     private String userPhone;
+    private LocalDateTime regDt;
 
     private boolean adminRoleYn;
 }

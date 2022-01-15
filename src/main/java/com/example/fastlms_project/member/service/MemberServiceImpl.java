@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +38,7 @@ public class MemberServiceImpl implements MemberService{
                 .userName(parameter.getUserName())
                 .password(encPassword)
                 .userPhone(parameter.getUserPhone())
+                .regDt(LocalDateTime.now())
                 .adminRoleYn(false)
                 .build();
 

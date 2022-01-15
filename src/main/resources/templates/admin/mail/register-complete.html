@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>부동산 광고시장 감시센터 관리자</title>
+</head>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    window.onload=function (){
+    var result = [[${result}]];
+
+        if(result == true){
+            alert("등록 됐습니다.")
+            window.location.href = 'http://localhost:8080/admin/mail/list.do';
+        } else if(result == false){
+            alert("등록에 실패했습니다..")
+            window.location.href = 'http://localhost:8080/admin/mail/register.do';
+        }
+    }
+    /*]]>*/
+</script>
+<body>
+<h1>메일 템플릿 등록 결과</h1>
+</div>
+</body>
+</html>
