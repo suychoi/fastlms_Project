@@ -13,6 +13,8 @@
             |
             <a href="/member/login">로그인</a>
             |
+            <a href="/member/logout">로그아웃</a>
+            |
             <a href="/member/register">회원가입</a>
         </div>
         <hr>
@@ -23,6 +25,21 @@
             <a href="/report/list">신고 및 조회</a>
             |
             <a href="/notice/">알림마당</a>
+            |
+            <a href="/member/logout">로그아웃</a>
+        </div>
+        <hr>
+    </div>
+
+    <div th:fragment="admin-body-menu">
+        <div>
+            <a href="/report/list">신고 목록</a>
+            |
+            <a href="/notice/">공지 사항 관리</a>
+            |
+            <a href="/">회원 목록</a>
+            |
+            <a href="/">메일 템플릿 관리</a>
             |
             <a href="/member/logout">로그아웃</a>
         </div>

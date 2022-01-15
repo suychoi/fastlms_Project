@@ -37,12 +37,12 @@ public class MemberServiceImpl implements MemberService{
                 .userName(parameter.getUserName())
                 .password(encPassword)
                 .userPhone(parameter.getUserPhone())
+                .adminRoleYn(false)
                 .build();
 
         memberRepository.save(member);
 
         return true;
-        //프론트에서 중복확인 필요
     }
 
     @Override
@@ -56,6 +56,10 @@ public class MemberServiceImpl implements MemberService{
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+        if (member.isAdminRoleYn()){
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
 
         return new User(member.getUserEmail(), member.getPassword(), grantedAuthorities);
     }
