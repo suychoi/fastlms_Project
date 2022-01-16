@@ -1,4 +1,4 @@
-package com.example.fastlms_project.component.entity;
+package com.example.fastlms_project.mail.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.example.fastlms_project.component.model;
+package com.example.fastlms_project.mail.model;
 
 import lombok.Data;
 import lombok.ToString;
