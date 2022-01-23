@@ -21,7 +21,7 @@ public class MailServiceImpl implements MailService{
     private final MailMapper mailMapper;
 
     @Override
-    public boolean register(MailRegister parameter) {
+    public boolean mailRegister(MailRegister parameter) {
         Optional<Mail> optionalMail = mailRepository.findById(parameter.getMailKey());
         if(optionalMail.isPresent()){
             return false;
@@ -32,6 +32,24 @@ public class MailServiceImpl implements MailService{
                 .mailTitle(parameter.getMailTitle())
                 .mailContents(parameter.getMailContents())
                 .build();
+
+        mailRepository.save(mail);
+
+        return true;
+    }
+
+    @Override
+    public boolean mailEdit(MailRegister parameter) {
+        Optional<Mail> optionalMail = mailRepository.findById(parameter.getMailKey());
+        //stream 과 filter를 사용해보기
+        if (!optionalMail.isPresent()){
+            return false;
+        }
+
+        Mail mail = optionalMail.get();
+                mail.setMailKey(parameter.getMailKey());
+                mail.setMailTitle(parameter.getMailTitle());
+                mail.setMailContents(parameter.getMailContents());
 
         mailRepository.save(mail);
 
@@ -53,5 +71,10 @@ public class MailServiceImpl implements MailService{
         }
 
         return list;
+    }
+
+    @Override
+    public MailDto getMailByKey(String mailKey) {
+        return mailRepository.findById(mailKey).map(MailDto::of).orElse(null);
     }
 }

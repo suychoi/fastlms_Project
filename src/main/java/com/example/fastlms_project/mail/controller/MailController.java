@@ -1,6 +1,7 @@
 package com.example.fastlms_project.mail.controller;
 
 import com.example.fastlms_project.mail.dto.MailDto;
+import com.example.fastlms_project.mail.entity.Mail;
 import com.example.fastlms_project.mail.model.MailParam;
 import com.example.fastlms_project.mail.model.MailRegister;
 import com.example.fastlms_project.mail.service.MailService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import util.BaseController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -42,17 +44,54 @@ public class MailController extends BaseController {
         return "/admin/mail/list";
     }
 
-    @GetMapping("/admin/mail/register.do")
-    public String register(){
+    @GetMapping(value = {"/admin/mail/register.do", "/admin/mail/edit.do"})
+    public String register(Model model, HttpServletRequest request, MailRegister parameter){
+
+        boolean editMode = request.getRequestURI().contains("/edit.do");
+        MailDto mailDetail = new MailDto();
+
+        if (editMode) {
+            String key = parameter.getMailKey();
+            MailDto existMail = mailService.getMailByKey(key);
+            if(existMail == null){
+                //나중에 에러처리 만들어야 함
+                model.addAttribute("message", "메일 정보가 없습니다.");
+                return "error/error";
+            }
+            mailDetail = existMail;
+        }
+
+        model.addAttribute("editMode", editMode);
+        model.addAttribute("mailDetail", mailDetail);
+
         return "/admin/mail/register";
     }
 
-    @PostMapping("/admin/mail/register.do")
-    public String register(Model model, MailRegister parameter){
+    @PostMapping(value = {"/admin/mail/register.do", "/admin/mail/edit.do"})
+    public String mailRegister(Model model, HttpServletRequest request, MailRegister parameter){
 
-        boolean result = mailService.register(parameter);
-        model.addAttribute("result", result);
+        System.out.println(parameter.getMailKey() + "!!!!!!!!!!!!!!!!!!!!!!!!!");
 
-        return "/admin/mail/register-complete";
+        boolean editMode = request.getRequestURI().contains("/edit.do");
+
+        if(editMode){
+            String key = parameter.getMailKey();
+            MailDto existMail = mailService.getMailByKey(key);
+            if (existMail == null){
+                model.addAttribute("message", "템플릿 정보가 존재하지 않습니다.");
+                return "error/error";
+            }
+
+            boolean result = mailService.mailEdit(parameter);
+            model.addAttribute("result", result);
+            return "/admin/mail/register-complete";
+
+        } else {
+
+            boolean result = mailService.mailRegister(parameter);
+            model.addAttribute("result", result);
+            return "/admin/mail/register-complete";
+        }
+
     }
 }
