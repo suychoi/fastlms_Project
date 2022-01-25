@@ -15,8 +15,8 @@
             <tr>
                 <th width="150" height="10">템플릿 Key</th>
                 <th>
-                    <input readonly th:if="${editMode}" th:value="${x.mailKey}" style="width:98%; height:98%" type="text" name="mailKey" placeholder="이메일 템플릿 Key" required>
                     <input th:if="${!editMode}" style="width:98%; height:98%" type="text" name="mailKey" placeholder="이메일 템플릿 Key" required>
+                    <p th:if="${editMode}" th:text="${x.mailKey}">
                 </th>
             </tr>
             <tr>
