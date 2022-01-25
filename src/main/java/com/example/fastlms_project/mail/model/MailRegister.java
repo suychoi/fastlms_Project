@@ -9,4 +9,6 @@ public class MailRegister {
     private String mailKey;
     private String mailTitle;
     private String mailContents;
+
+    String idList;
 }

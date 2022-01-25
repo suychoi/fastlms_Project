@@ -58,11 +58,9 @@
 
                 var checked = $(this).is(':checked');
 
-
                 $('#dataLIst input[type=checkbox]').each(function(k, v) {
                     $(this).prop('checked', checked);
                 });
-
 
             });
 
@@ -140,5 +138,8 @@
     <div class="pager" th:utext="${pager}"></div>
 
 </div>
+    <form name="deleteForm" method="post" action="/admin/mail/delete.do">
+        <input type="hidden" name="idList"/>
+    </form>
 </body>
 </html>

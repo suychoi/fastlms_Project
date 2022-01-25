@@ -94,4 +94,12 @@ public class MailController extends BaseController {
         }
 
     }
+
+    @PostMapping("/admin/mail/delete.do")
+    public String deleteMail(MailRegister parameter){
+
+        mailService.deleteMail(parameter.getIdList());
+
+        return "redirect:/admin/mail/list.do";
+    }
 }

@@ -19,4 +19,7 @@ public interface MailService {
 
     //존재하는 메일 세부내용 가져오기
     MailDto getMailByKey(String mailKey);
+
+    //선택한 메일 삭제
+    boolean deleteMail(String idList);
 }

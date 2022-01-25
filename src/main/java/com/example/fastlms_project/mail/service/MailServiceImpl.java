@@ -77,4 +77,14 @@ public class MailServiceImpl implements MailService{
     public MailDto getMailByKey(String mailKey) {
         return mailRepository.findById(mailKey).map(MailDto::of).orElse(null);
     }
+
+    @Override
+    public boolean deleteMail(String idList) {
+        String[] keys = idList.split(",");
+            for(int x=0; x < keys.length; x++){
+            mailRepository.deleteById(keys[x]);
+        }
+
+        return true;
+    }
 }
