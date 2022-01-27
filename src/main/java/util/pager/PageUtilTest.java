@@ -1,4 +1,4 @@
-package util;
+package util.pager;
 
 public class PageUtilTest {
 

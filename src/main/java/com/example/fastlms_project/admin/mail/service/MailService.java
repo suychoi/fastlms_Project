@@ -1,8 +1,8 @@
-package com.example.fastlms_project.mail.service;
+package com.example.fastlms_project.admin.mail.service;
 
-import com.example.fastlms_project.mail.dto.MailDto;
-import com.example.fastlms_project.mail.model.MailParam;
-import com.example.fastlms_project.mail.model.MailRegister;
+import com.example.fastlms_project.admin.mail.dto.MailDto;
+import com.example.fastlms_project.admin.mail.model.MailParam;
+import com.example.fastlms_project.admin.mail.model.MailRegister;
 
 import java.util.List;
 

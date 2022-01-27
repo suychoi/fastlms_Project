@@ -1,6 +1,6 @@
-package com.example.fastlms_project.mail.dto;
+package com.example.fastlms_project.admin.mail.dto;
 
-import com.example.fastlms_project.mail.entity.Mail;
+import com.example.fastlms_project.admin.mail.entity.Mail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

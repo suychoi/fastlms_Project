@@ -1,11 +1,11 @@
-package com.example.fastlms_project.mail.service;
+package com.example.fastlms_project.admin.mail.service;
 
-import com.example.fastlms_project.mail.dto.MailDto;
-import com.example.fastlms_project.mail.entity.Mail;
-import com.example.fastlms_project.mail.mapper.MailMapper;
-import com.example.fastlms_project.mail.model.MailParam;
-import com.example.fastlms_project.mail.model.MailRegister;
-import com.example.fastlms_project.mail.repository.MailRepository;
+import com.example.fastlms_project.admin.mail.dto.MailDto;
+import com.example.fastlms_project.admin.mail.model.MailParam;
+import com.example.fastlms_project.admin.mail.entity.Mail;
+import com.example.fastlms_project.admin.mail.mapper.MailMapper;
+import com.example.fastlms_project.admin.mail.model.MailRegister;
+import com.example.fastlms_project.admin.mail.repository.MailRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -80,6 +80,7 @@ public class MailServiceImpl implements MailService{
 
     @Override
     public boolean deleteMail(String idList) {
+        //null check에 대한 exception handler 필요
         String[] keys = idList.split(",");
             for(int x=0; x < keys.length; x++){
             mailRepository.deleteById(keys[x]);

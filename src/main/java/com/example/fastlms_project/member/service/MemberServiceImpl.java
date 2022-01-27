@@ -1,5 +1,10 @@
 package com.example.fastlms_project.member.service;
 
+import com.example.fastlms_project.admin.mail.entity.Mail;
+import com.example.fastlms_project.admin.mail.repository.MailRepository;
+import com.example.fastlms_project.components.MailComponents;
+import com.example.fastlms_project.exception.ExceptionCode;
+import com.example.fastlms_project.exception.Exception;
 import com.example.fastlms_project.member.entity.Member;
 import com.example.fastlms_project.member.model.MemberRegister;
 import com.example.fastlms_project.member.repository.MemberRepository;
@@ -22,11 +27,15 @@ import java.util.Optional;
 public class MemberServiceImpl implements MemberService{
 
     private final MemberRepository memberRepository;
+    private final MailComponents mailComponents;
+    private final MailRepository mailRepository;
 
     @Override
     public boolean register(MemberRegister parameter) {
 
-        Optional<Member> optionalMember = memberRepository.findById(parameter.getUserEmail());
+        String userEmail = parameter.getUserEmail();
+
+        Optional<Member> optionalMember = memberRepository.findById(userEmail);
         if (optionalMember.isPresent()){
             return false;
         }
@@ -34,16 +43,23 @@ public class MemberServiceImpl implements MemberService{
         String encPassword = BCrypt.hashpw(parameter.getPassword(), BCrypt.gensalt());
 
         Member member = Member.builder()
-                .userEmail(parameter.getUserEmail())
+                .userEmail(userEmail)
                 .userName(parameter.getUserName())
                 .password(encPassword)
                 .userPhone(parameter.getUserPhone())
                 .regDt(LocalDateTime.now())
                 .adminRoleYn(false)
                 .build();
-
         memberRepository.save(member);
 
+        Optional<Mail> optionalMail = mailRepository.findById("회원가입인증");
+        if(!optionalMail.isPresent()){
+            throw new Exception(ExceptionCode.NO_EMAIL_KEY);
+        } else {
+            String mailTitle = optionalMail.get().getMailTitle();
+            String mailContents = optionalMail.get().getMailContents();
+            mailComponents.sendMail(userEmail, mailTitle, mailContents);
+        }
         return true;
     }
 

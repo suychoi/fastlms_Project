@@ -1,17 +1,16 @@
-package com.example.fastlms_project.mail.controller;
+package com.example.fastlms_project.admin.mail.controller;
 
-import com.example.fastlms_project.mail.dto.MailDto;
-import com.example.fastlms_project.mail.entity.Mail;
-import com.example.fastlms_project.mail.model.MailParam;
-import com.example.fastlms_project.mail.model.MailRegister;
-import com.example.fastlms_project.mail.service.MailService;
+import com.example.fastlms_project.admin.mail.dto.MailDto;
+import com.example.fastlms_project.admin.mail.model.MailParam;
+import com.example.fastlms_project.admin.mail.service.MailService;
+import com.example.fastlms_project.admin.mail.model.MailRegister;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import util.BaseController;
+import util.pager.BaseController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -70,8 +69,6 @@ public class MailController extends BaseController {
     @PostMapping(value = {"/admin/mail/register.do", "/admin/mail/edit.do"})
     public String mailRegister(Model model, HttpServletRequest request, MailRegister parameter){
 
-        System.out.println(parameter.getMailKey() + "!!!!!!!!!!!!!!!!!!!!!!!!!");
-
         boolean editMode = request.getRequestURI().contains("/edit.do");
 
         if(editMode){
@@ -92,7 +89,6 @@ public class MailController extends BaseController {
             model.addAttribute("result", result);
             return "/admin/mail/register-complete";
         }
-
     }
 
     @PostMapping("/admin/mail/delete.do")

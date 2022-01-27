@@ -24,4 +24,8 @@ public class Member {
     private LocalDateTime regDt;
 
     private boolean adminRoleYn;
+
+    private boolean emailAuthYn;
+    private LocalDateTime emailAuthDt;
+    private String emailAuthKey;
 }

@@ -1,4 +1,4 @@
-package com.example.fastlms_project.mail.model;
+package com.example.fastlms_project.admin.mail.model;
 
 import lombok.Data;
 

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.fastlms_project.mail.mapper.MailMapper">
+<mapper namespace="com.example.fastlms_project.admin.mail.mapper.MailMapper">
 
-    <select id="mailList" resultType="com.example.fastlms_project.mail.dto.MailDto">
+    <select id="mailList" resultType="com.example.fastlms_project.admin.mail.dto.MailDto">
         select *
         from mail
         where 1 = 1
