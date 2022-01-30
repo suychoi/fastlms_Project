@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -30,16 +31,27 @@ public class MemberServiceImpl implements MemberService{
     private final MailComponents mailComponents;
     private final MailRepository mailRepository;
 
-    public void sendMemberMail(String mailKey, String userEmail){
+    public void sendMemberMail(String mailKey, String userEmail, String behave, String linkText){
         //메일 전송메서드
         Optional<Mail> optionalMail = mailRepository.findById(mailKey);
         if(!optionalMail.isPresent()){
             throw new Exception(ExceptionCode.NO_EMAIL_KEY);
         }
 
+        String uuid = UUID.randomUUID().toString();
+        String appendText ="<div><a target='_blank' href='http://localhost:8080/member/" + behave + "?id=" + uuid + "'> " + linkText + " </a></div>";
+
         String mailTitle = optionalMail.get().getMailTitle();
-        String mailContents = optionalMail.get().getMailContents();
+        String mailContents = optionalMail.get().getMailContents().concat(appendText);
+
         mailComponents.sendMail(userEmail, mailTitle, mailContents);
+
+        Optional<Member> optionalMember = memberRepository.findById(userEmail);
+
+        Member member = optionalMember.get();    // 메일 종류에 따라 다르게 저장필요
+                member.setEmailAuthKey(uuid);
+                member.setEmailAuthDt(LocalDateTime.now());
+                memberRepository.save(member);
     }
 
     @Override
@@ -60,11 +72,12 @@ public class MemberServiceImpl implements MemberService{
                 .password(encPassword)
                 .userPhone(parameter.getUserPhone())
                 .regDt(LocalDateTime.now())
+                .emailAuthYn(false)
                 .adminRoleYn(false)
                 .build();
         memberRepository.save(member);
 
-        sendMemberMail("회원가입인증", userEmail);
+        sendMemberMail("회원가입인증", userEmail, "email_Auth", "이메일 인증 완료");
 
         return true;
     }
