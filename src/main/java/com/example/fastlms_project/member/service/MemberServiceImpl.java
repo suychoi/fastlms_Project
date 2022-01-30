@@ -6,6 +6,7 @@ import com.example.fastlms_project.components.MailComponents;
 import com.example.fastlms_project.exception.ExceptionCode;
 import com.example.fastlms_project.exception.Exception;
 import com.example.fastlms_project.member.entity.Member;
+import com.example.fastlms_project.member.exception.MemberNotEmailAuthException;
 import com.example.fastlms_project.member.model.MemberRegister;
 import com.example.fastlms_project.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -48,10 +49,16 @@ public class MemberServiceImpl implements MemberService{
 
         Optional<Member> optionalMember = memberRepository.findById(userEmail);
 
-        Member member = optionalMember.get();    // 메일 종류에 따라 다르게 저장필요
-                member.setEmailAuthKey(uuid);
-                member.setEmailAuthDt(LocalDateTime.now());
-                memberRepository.save(member);
+        if(mailKey == "회원가입인증"){
+            Member member = optionalMember.get();    // 메일 종류에 따라 다르게 저장필요
+            member.setEmailAuthKey(uuid);
+            memberRepository.save(member);
+        } else if (mailKey == "아이디찾기"){
+
+        } else if (mailKey == "비밀번호초기화"){
+
+        }
+
     }
 
     @Override
@@ -77,7 +84,27 @@ public class MemberServiceImpl implements MemberService{
                 .build();
         memberRepository.save(member);
 
-        sendMemberMail("회원가입인증", userEmail, "email_Auth", "이메일 인증 완료");
+        sendMemberMail("회원가입인증", userEmail, "email-auth", "이메일 인증 완료");
+
+        return true;
+    }
+
+    @Override
+    public boolean emailAuth(String uuid) {
+        Optional<Member> optionalMember = memberRepository.findByEmailAuthKey(uuid);
+        if (!optionalMember.isPresent()){
+            return false;
+        }
+
+        Member member = optionalMember.get();
+
+        if (member.isEmailAuthYn()){
+            return false;
+        }
+
+        member.setEmailAuthYn(true);
+        member.setEmailAuthDt(LocalDateTime.now());
+        memberRepository.save(member);
 
         return true;
     }
@@ -90,6 +117,10 @@ public class MemberServiceImpl implements MemberService{
         }
 
         Member member = optionalMember.get();
+
+        if(!member.isEmailAuthYn()){
+            throw new MemberNotEmailAuthException("이메일 인증이 필요합니다.");
+        }
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
