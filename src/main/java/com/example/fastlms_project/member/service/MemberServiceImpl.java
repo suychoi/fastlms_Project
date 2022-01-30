@@ -30,6 +30,18 @@ public class MemberServiceImpl implements MemberService{
     private final MailComponents mailComponents;
     private final MailRepository mailRepository;
 
+    public void sendMemberMail(String mailKey, String userEmail){
+        //메일 전송메서드
+        Optional<Mail> optionalMail = mailRepository.findById(mailKey);
+        if(!optionalMail.isPresent()){
+            throw new Exception(ExceptionCode.NO_EMAIL_KEY);
+        }
+
+        String mailTitle = optionalMail.get().getMailTitle();
+        String mailContents = optionalMail.get().getMailContents();
+        mailComponents.sendMail(userEmail, mailTitle, mailContents);
+    }
+
     @Override
     public boolean register(MemberRegister parameter) {
 
@@ -52,14 +64,8 @@ public class MemberServiceImpl implements MemberService{
                 .build();
         memberRepository.save(member);
 
-        Optional<Mail> optionalMail = mailRepository.findById("회원가입인증");
-        if(!optionalMail.isPresent()){
-            throw new Exception(ExceptionCode.NO_EMAIL_KEY);
-        } else {
-            String mailTitle = optionalMail.get().getMailTitle();
-            String mailContents = optionalMail.get().getMailContents();
-            mailComponents.sendMail(userEmail, mailTitle, mailContents);
-        }
+        sendMemberMail("회원가입인증", userEmail);
+
         return true;
     }
 
