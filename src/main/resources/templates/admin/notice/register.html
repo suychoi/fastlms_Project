@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>부동산 광고시장 감시센터 관리자</title>
+</head>
+<body>
+<h1>공지사항 등록</h1>
+<hr>
+<div th:replace="/fragments/layout.html :: admin-body-menu"></div>
+
+<div align="center">
+    <form method="post" th:each="x : ${noticeDetail}">
+        <table border="1">
+            <tr>
+                <th width="150" height="10">공지사항 제목</th>
+                <th>
+                    <input th:if="${!editMode}" style="width:98%; height:98%" type="text" name="noticeTitle" placeholder="공지사항 제목" required>
+                    <p th:if="${editMode}" th:text="${x.noticeTitle}">
+                </th>
+            </tr>
+            <tr>
+                <th>공지 내용</th>
+                <th style="border: 1px solid;" width="700" height="700">
+                    <textarea th:text="${x.noticeContents}" name="noticeContents" style="width:98%; height:98%"></textarea>
+                </th>
+            </tr>
+        </table>
+        <div class="button">
+            <button th:if="${editMode}" type="submit"> 수정 하기 </button>
+            <button th:if="${!editMode}" type="submit"> 등록 하기 </button>
+            <a href="/admin/notice/list.do"> 목록 </a>
+        </div>
+    </form>
+</div>
+
+</form>
+
+</body>
+</html>

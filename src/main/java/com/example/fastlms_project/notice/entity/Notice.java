@@ -16,11 +16,13 @@ import java.time.LocalDateTime;
 @Entity
 public class Notice {
     @Id
-    private String noticeTitle;
+    private int noticeNumber;
 
-    private String noticeWriter;
-    private boolean noticePresentYn;
-    private LocalDateTime noticeDueDt;
+    private boolean noticeStatus;
+    private String noticeTitle;
+    private int noticeViewCount;
+
+    private String noticeContents;
     private LocalDateTime noticeRegDt;
 
 }

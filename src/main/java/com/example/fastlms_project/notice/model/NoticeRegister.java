@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @ToString
 @Data
 public class NoticeRegister {
+    private int noticeNumber;
     private String noticeTitle;
-    private String noticeWriter;
-    private LocalDateTime noticeDueDt;
+    private String noticeContents;
 }

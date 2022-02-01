@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<!--    메인 페이지-->
     <div th:fragment="fragment-body-menu">
         <div>
             <a href="/report/list">신고 및 조회</a>
@@ -20,6 +21,7 @@
         <hr>
     </div>
 
+<!--    회원 전용 페이지-->
     <div th:fragment="member-body-menu">
         <div>
             <a href="/report/list">신고 및 조회</a>
@@ -31,11 +33,12 @@
         <hr>
     </div>
 
+<!--    관리자 전용 페이지-->
     <div th:fragment="admin-body-menu">
         <div>
-            <a href="/report/list.do">신고 목록</a>
+            <a href="/admin/report/list.do">신고 목록</a>
             |
-            <a href="/notice/list.do">공지 사항 관리</a>
+            <a href="/admin/notice/list.do">공지 사항 관리</a>
             |
             <a href="/">회원 목록</a>
             |
