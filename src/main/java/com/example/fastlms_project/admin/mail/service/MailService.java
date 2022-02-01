@@ -15,11 +15,11 @@ public interface MailService {
     boolean mailEdit(MailRegister parameter);
 
     //메일 목록 가져오기
-    List<MailDto> list(MailParam param);
+    List<MailDto> mailList(MailParam param);
 
     //존재하는 메일 세부내용 가져오기
-    MailDto getMailByKey(String mailKey);
+    MailDto mailGetDetail(String mailKey);
 
     //선택한 메일 삭제
-    boolean deleteMail(String idList);
+    boolean mailDelete(String idList);
 }

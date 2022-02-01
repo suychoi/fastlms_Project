@@ -26,7 +26,7 @@ public class MailController extends BaseController {
     public String list(Model model, MailParam parameter){
 
         parameter.init();
-        List<MailDto> mailDtoList = mailService.list(parameter);
+        List<MailDto> mailDtoList = mailService.mailList(parameter);
 
         long totalCount = 0;
         if(!CollectionUtils.isEmpty(mailDtoList)){
@@ -51,7 +51,7 @@ public class MailController extends BaseController {
 
         if (editMode) {
             String key = parameter.getMailKey();
-            MailDto existMail = mailService.getMailByKey(key);
+            MailDto existMail = mailService.mailGetDetail(key);
             if(existMail == null){
                 //나중에 에러처리 만들어야 함
                 model.addAttribute("message", "메일 정보가 없습니다.");
@@ -73,7 +73,7 @@ public class MailController extends BaseController {
 
         if(editMode){
             String key = parameter.getMailKey();
-            MailDto existMail = mailService.getMailByKey(key);
+            MailDto existMail = mailService.mailGetDetail(key);
             if (existMail == null){
                 model.addAttribute("message", "템플릿 정보가 존재하지 않습니다.");
                 return "error/error";
@@ -94,7 +94,7 @@ public class MailController extends BaseController {
     @PostMapping("/admin/mail/delete.do")
     public String deleteMail(MailRegister parameter){
 
-        mailService.deleteMail(parameter.getIdList());
+        mailService.mailDelete(parameter.getIdList());
 
         return "redirect:/admin/mail/list.do";
     }

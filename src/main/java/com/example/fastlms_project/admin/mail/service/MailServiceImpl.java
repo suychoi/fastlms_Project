@@ -57,7 +57,7 @@ public class MailServiceImpl implements MailService{
     }
 
     @Override
-    public List<MailDto> list(MailParam parameter) {
+    public List<MailDto> mailList(MailParam parameter) {
         long totalCount = mailMapper.mailCount(parameter);
 
         List<MailDto> list = mailMapper.mailList(parameter);
@@ -74,12 +74,12 @@ public class MailServiceImpl implements MailService{
     }
 
     @Override
-    public MailDto getMailByKey(String mailKey) {
+    public MailDto mailGetDetail(String mailKey) {
         return mailRepository.findById(mailKey).map(MailDto::of).orElse(null);
     }
 
     @Override
-    public boolean deleteMail(String idList) {
+    public boolean mailDelete(String idList) {
         //null check에 대한 exception handler 필요
         String[] keys = idList.split(",");
             for(int x=0; x < keys.length; x++){
