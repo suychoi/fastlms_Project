@@ -15,8 +15,13 @@
             <tr>
                 <th width="150" height="10">공지사항 제목</th>
                 <th>
-                    <input th:if="${!editMode}" style="width:98%; height:98%" type="text" name="noticeTitle" placeholder="공지사항 제목" required>
-                    <p th:if="${editMode}" th:text="${x.noticeTitle}">
+                    <input style="width:98%; height:98%" th:value="${x.noticeTitle}" name="noticeTitle" placeholder="공지사항 제목" required>
+                </th>
+            </tr>
+            <tr>
+                <th>공개 여부</th>
+                <th>
+                    공개<input type="checkbox" name="noticeStatus" th:checked="${x.noticeStatus}">
                 </th>
             </tr>
             <tr>

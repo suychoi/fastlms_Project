@@ -1,4 +1,4 @@
-package com.example.fastlms_project.notice.model;
+package com.example.fastlms_project.admin.notice.model;
 
 import lombok.Data;
 import lombok.ToString;
@@ -11,4 +11,5 @@ public class NoticeRegister {
     private int noticeNumber;
     private String noticeTitle;
     private String noticeContents;
+    private boolean noticeStatus;
 }

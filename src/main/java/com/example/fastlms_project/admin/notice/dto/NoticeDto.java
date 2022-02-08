@@ -1,6 +1,6 @@
-package com.example.fastlms_project.notice.dto;
+package com.example.fastlms_project.admin.notice.dto;
 
-import com.example.fastlms_project.notice.entity.Notice;
+import com.example.fastlms_project.admin.notice.entity.Notice;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
