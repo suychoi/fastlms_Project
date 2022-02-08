@@ -16,4 +16,16 @@
         where 1 = 1
     </select>
 
+    <select id="mainNoticeList" resultType="com.example.fastlms_project.admin.notice.dto.NoticeDto">
+        select *
+        from notice
+        where notice_status = 1
+    </select>
+
+    <select id="mainNoticeCount" resultType="long">
+        select count(*)
+        from notice
+        where notice_status = 1
+    </select>
+
 </mapper>

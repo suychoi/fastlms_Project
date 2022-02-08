@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>부동산 광고시장 감시센터</title>
+    <style>
+        .list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .list table th, .list table td {
+            border: solid 1px #000;
+        }
+
+        p.nothing {
+            text-align: center;
+            padding: 100px;
+        }
+
+        .list .buttons {
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .list .buttons a, .list .buttons button {
+            border-width: 0;
+            background-color: transparent;
+            text-decoration: underline;
+            font-size: 14px;
+            line-height: 20px;
+            height: 20px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .list .buttons .total-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .pager {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pager a.on {
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>공지 사항 </h1>
+    <div th:replace="/fragments/layout.html :: fragment-body-menu"></div>
+
+    <div class="list">
+        <div class="buttons">
+            <p class="total-count">전체 <span th:text="${totalCount}"></span>개</p>
+            <br>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    번호
+                </th>
+                <th>
+                    제목
+                </th>
+                <th>
+                    조회수
+                </th>
+                <th>
+                    등록일시
+                </th>
+            </tr>
+            </thead>
+            <tbody id="dataLIst">
+            <tr th:each="x : ${list}">
+                <td th:text="${x.seq}">
+                </td>
+                <td>
+                    <p>
+                        <a th:href="'view.do?noticeNumber=' + ${x.noticeNumber}" th:text="${x.noticeTitle}">공지 제목</a>
+                    </p>
+                </td>
+                <td>
+                    <p th:text="${x.noticeViewCount}">조회수</p>
+                </td>
+                <td>
+                    <p th:text="${x.noticeRegDt}">등록일시</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="pager" th:utext="${pager}"></div>
+
+    </div>
+
+</body>
+</html>
