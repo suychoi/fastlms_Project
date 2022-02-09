@@ -40,10 +40,17 @@ public class MainNoticeConrtroller extends BaseController {
         return "/mainNotice/noticeList";
     }
 
-    @GetMapping("/mainNotice/view")
+    @GetMapping("/mainNotice/view.do")
     public String view(Model model, NoticeParam parameter){
 
-        return "/mainNotice/noticeList";
+        NoticeDto mainNotice = mainNoticeService.mainNoticeDetail(parameter.getNoticeNumber());
+        if(mainNotice == null){
+            model.addAttribute("message", "공지사항 정보가 없습니다.");
+            return "error/error";
+        }
+        model.addAttribute("mainNotice", mainNotice);
+
+        return "/mainNotice/noticeView";
     }
 
 }

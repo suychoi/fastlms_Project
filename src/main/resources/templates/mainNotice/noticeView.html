@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>부동산 광고시장 감시센터 관리자</title>
+</head>
+<body>
+<h1>공지사항</h1>
+<hr>
+<div th:replace="/fragments/layout.html :: fragment-body-menu"></div>
+
+<div align="center">
+        <table border="1" th:each="x : ${mainNotice}">
+            <tr>
+                <th width="150" height="10">공지사항 제목</th>
+                <th >
+                    <p th:text="${x.noticeTitle}"></p>
+                </th>
+            </tr>
+            <tr>
+                <th width="150" height="10">조회 수</th>
+                <th >
+                    <p th:text="${x.noticeViewCount}"></p>
+                </th>
+            </tr>
+            <tr>
+                <th>공지 내용</th>
+                <th style="border: 1px solid;" width="700" height="700" >
+                    <p th:text="${x.noticeContents}"></p>
+                </th>
+            </tr>
+        </table>
+            <a href="/mainNotice/noticeList"> 목록 </a>
+</div>
+
+</form>
+
+</body>
+</html>

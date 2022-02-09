@@ -38,7 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/",
                 "/member/**",
-                "/notice/**")
+                "/mainNotice/**")
                 .permitAll();
 
         http.authorizeRequests()
