@@ -3,38 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <title>부동산 광고시장 감시센터</title>
+    <style>
+        .detail table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .detail table th, .detail table td {
+            border:solid 1px #000;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .buttons a, .buttons button {
+            border-width: 0;
+            background-color: transparent;
+            text-decoration: underline;
+            font-size: 14px;
+            line-height: 20px;
+            height: 20px;
+            color: #000;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <h1>신고 하기</h1>
 <hr>
 <div th:replace="/fragments/layout.html :: member-body-menu"></div>
-<div align="center">
-    <form method="post" th:each="x : ${noticeDetail}">
-        <table border="1">
+
+<div class="detail">
+    <form method="post">
+        <h2>신고인 기본정보</h2>
+        <table>
+            <tbody>
             <tr>
-                <th width="150" height="10">공지사항 제목</th>
+                <th>성명</th>
+                <td>
+                    <p th:text="${userInfo}"></p>
+                </td>
+            </tr>
+            <tr>
                 <th>
-                    <input style="width:98%; height:98%" th:value="${x.noticeTitle}" name="noticeTitle" placeholder="공지사항 제목" required>
+                    이메일
                 </th>
+                <td>
+                    <p th:text="${userInfo}"></p>
+                </td>
             </tr>
+
             <tr>
-                <th>공개 여부</th>
                 <th>
-                    공개<input type="checkbox" name="noticeStatus" th:checked="${x.noticeStatus}">
+                    휴대전화 번호
                 </th>
+                <td>
+                    <p th:text="${userInfo}"></p>
+                </td>
             </tr>
-            <tr>
-                <th>공지 내용</th>
-                <th style="border: 1px solid;" width="700" height="700">
-                    <textarea th:text="${x.noticeContents}" name="noticeContents" style="width:98%; height:98%"></textarea>
-                </th>
-            </tr>
+            </tbody>
         </table>
-        <div class="button">
-            <button th:if="${editMode}" type="submit"> 수정 하기 </button>
-            <button th:if="${!editMode}" type="submit"> 등록 하기 </button>
-            <a href="/admin/notice/list.do"> 목록 </a>
+        <h2>신고 사유 선택</h2>
+        <select name="reason" required>
+            <option value=""> 필수선택 사항입니다. </option>
+            <option value="명시의무 위반">명시의무 위반</option>
+            <option value="광고주체">광고주체</option>
+            <option value="부당한표시 및 광고 금지">부당한표시 및 광고 금지</option>
+        </select>
+
+
+
+
+        <div class="buttons">
+            <button th:if="${editMode}" type="submit"> 강좌 수정 하기 </button>
+            <button th:if="${!editMode}" type="submit"> 강좌 등록 하기 </button>
+            <a href="/admin/course/list.do"> 목록 이동 </a>
         </div>
+
     </form>
 </div>
 
