@@ -21,6 +21,4 @@ public interface ReportService {
 
     //신고 삭제
     boolean reportDelete(Integer deleteId);
-
-
 }
