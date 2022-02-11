@@ -34,7 +34,6 @@ public class ReportDto {
     LocalDateTime startDate;    //조사 일자
     LocalDateTime doneDate;     //종료 일자
 
-
     String reportedClass;    //피신고대상자 구분
     String reportedName;     //피신고대상자 상호
     String reportedPhone;   //피신고대상자 휴대폰번호
@@ -46,9 +45,20 @@ public class ReportDto {
     long totalCount;
     long seq;
 
+    LocalDateTime checkDt;
+    LocalDateTime checkRegDt;
+    String platform;
+    String dealType;
+    String intermediary;
+
     public static ReportDto of(Report report){
         return ReportDto.builder()
                 .reportNumber(report.getReportNumber())
+                .checkDt(report.getCheckDt())
+                .checkRegDt(report.getCheckRegDt())
+                .platform(report.getPlatform())
+                .dealType(report.getDealType())
+                .intermediary(report.getIntermediary())
                 .reportState(report.getReportState())
                 .monitoringRule(report.getMonitoringRule())
                 .reportDate(report.getReportDate())

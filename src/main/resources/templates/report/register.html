@@ -63,21 +63,200 @@
             </tr>
             </tbody>
         </table>
-        <h2>신고 사유 선택</h2>
-        <select name="reason" required>
-            <option value=""> 필수선택 사항입니다. </option>
-            <option value="명시의무 위반">명시의무 위반</option>
-            <option value="광고주체">광고주체</option>
-            <option value="부당한표시 및 광고 금지">부당한표시 및 광고 금지</option>
-        </select>
+        <h3>부당한 인터넷 표시 및 광고 확인방법</h3>
+        <table>
+            <tbody>
+            <tr>
+                <th>
+                    확인 방법 *
+                </th>
+                <td>
+                    <select name="check" required>
+                        <option value=""> 선택하세요 </option>
+                        <option value="인터넷 광고로 확인">인터넷 광고로 확인</option>
+                        <option value="전화로 확인">전화로 확인</option>
+                        <option value="방문하여 확인">방문하여 확인</option>
+                        <option value="기타">기타</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    신고인 확인 일시 *
+                </th>
+                <td>
+                    <p><input type="date" name="checkDt" required></p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    매물등록일(최초등록일)
+                </th>
+                <td>
+                    <p><input type="date" name="checkRegDt"></p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    중개플랫폼 업체 *
+                </th>
+                <td>
+                    <select name="platform" required>
+                        <option value=""> 선택하세요 </option>
+                        <option value="네이버부동산">네이버부동산</option>
+                        <option value="다음부동산">다음부동산</option>
+                        <option value="다방">다방</option>
+                        <option value="직방">직방</option>
+                        <option value="한방">한방</option>
+                        <option value="네모">네모</option>
+                        <option value="부동산114">부동산114</option>
+                        <option value="피터팬의좋은방구하기">피터팬의좋은방구하기</option>
+                        <option value="호갱노노">호갱노노</option>
+                        <option value="">직접입력</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    거래형태 *
+                </th>
+                <td>
+                    <select name="dealType" required>
+                        <option value=""> 선택하세요 </option>
+                        <option value="전세">전세</option>
+                        <option value="월세">월세</option>
+                        <option value="매매">매매</option>
+                        <option value="">직접입력</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    중개대상물 종류
+                </th>
+                <td>
+                    <select name="intermediary">
+                        <option value=""> 선택하세요 </option>
+                        <option value="아파트">아파트</option>
+                        <option value="오피스텔">오피스텔</option>
+                        <option value="원룸">원룸</option>
+                        <option value="단독주택">단독주택</option>
+                        <option value="빌라">빌라</option>
+                        <option value="상가">상가</option>
+                        <option value="사무실">사무실</option>
+                        <option value="공장">공장</option>
+                        <option value="토지">토지</option>
+                        <option value="">직접입력</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    신고 사유 *
+                </th>
+                <td>
+                    <select name="reason" required>
+                        <option value=""> 필수선택 사항입니다. </option>
+                        <option value="명시의무 위반">명시의무 위반</option>
+                        <option value="광고주체">광고주체</option>
+                        <option value="부당한표시 및 광고 금지">부당한표시 및 광고 금지</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    매물번호
+                </th>
+                <td>
+                    <p><input type="text" name="sellNumber"></p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    출처(URL)
+                </th>
+                <td>
+                    <p><input type="text" name="url"></p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    매물 소재지
+                </th>
+                <td>
+                    <p><input type="text" name="adress"></p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <h3>피신고대상자(개업공인중개사 등)</h3>
+        <table>
+            <tbody>
+            <tr>
+                <th>
+                    광고 행위자 *
+                </th>
+                <td>
+                    <select name="reportedClass" required>
+                        <option value=""> 필수선택 사항입니다. </option>
+                        <option value="개업 공인중개사">개업 공인중개사</option>
+                        <option value="중개보조원">중개보조원</option>
+                        <option value="기타">기타</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    상호 *
+                </th>
+                <td>
+                    <p><input type="text" name="reportedName" placeholder="성명/상호/단체명을 기재해주세요." required></p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    전화번호 *
+                </th>
+                <td>
+                    <p><input type="text" name="reportedPhone" placeholder='"-"없이 번호만 적어주세요' required></p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    소재지
+                </th>
+                <td>
+                    <p><input type="text" name="reportedAdress"></p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <h3>신고내용 및 입증자료</h3>
+        <table>
+            <tbody>
+            <tr>
+                <th>
+                    신고내용 *
+                </th>
+                <th style="border: 1px solid;" height="500">
+                    <textarea name="reportContents" style="width:98%; height:98%"></textarea>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    신고인 증빙자료 *
+                </th>
+                <th>
+                    <input type="file" name="reportFile" />
+                </th>
+            </tr>
 
-
-
+            </tbody>
+        </table>
 
         <div class="buttons">
-            <button th:if="${editMode}" type="submit"> 강좌 수정 하기 </button>
-            <button th:if="${!editMode}" type="submit"> 강좌 등록 하기 </button>
-            <a href="/admin/course/list.do"> 목록 이동 </a>
+            <button type="submit"> 신고하기 </button>
+            <a href="/admin/course/list.do"> 취소하기 </a>
         </div>
 
     </form>

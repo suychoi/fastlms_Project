@@ -25,11 +25,24 @@ public class Report {
     private String reporterName;
     private String reporterPhone;
 
-    private String reason;              //신고 사유
     private String check;               //확인 방법(drop down)
+    private LocalDateTime checkDt;      //신고인 확인 일시     //추가
+    private LocalDateTime checkRegDt;   //매물등록일             //추가
+
+    private String platform;            //중개플랫폼 업체  //추가
+    private String dealType;                //거래형태      //추가
+    private String intermediary;                //중개대상물 종류      //추가
+
+    private String reason;              //신고 사유
+
     private String url;                 //출처
     private String sellNumber;          //매물 번호
     private String adress;              //매물 소재지
+
+    private String reportedClass;       //광고 행위자
+    private String reportedName;        //피신고대상자 상호
+    private String reportedPhone;       //피신고대상자 휴대폰번호
+    private String reportedAdress;      //피신고 대상자 소재지
 
     private String reportState;
     private String monitoringRule;      //모니터링 방법법
@@ -37,11 +50,6 @@ public class Report {
     private LocalDateTime viewDate;     //확인 일자
     private LocalDateTime startDate;    //조사 일자
     private LocalDateTime doneDate;     //종료 일자
-
-    private String reportedClass;       //피신고대상자 구분
-    private String reportedName;        //피신고대상자 상호
-    private String reportedPhone;       //피신고대상자 휴대폰번호
-    private String reportedAdress;      //피신고 대상자 소재지
 
     private String reportContents;      //신고내용
     private String reportFile;
