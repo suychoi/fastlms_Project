@@ -1,5 +1,6 @@
 package com.example.fastlms_project.report.service;
 
+import com.example.fastlms_project.report.dto.MemberDto;
 import com.example.fastlms_project.report.dto.ReportDto;
 import com.example.fastlms_project.report.model.ReportParam;
 import com.example.fastlms_project.report.model.ReportRegister;
@@ -14,7 +15,7 @@ public class ReportServiceImpl implements ReportService {
 
 
     @Override
-    public boolean ReportRegister(ReportRegister parameter) {
+    public boolean reportRegister(ReportRegister parameter) {
         return false;
     }
 

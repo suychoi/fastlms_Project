@@ -9,6 +9,7 @@ import com.example.fastlms_project.member.entity.Member;
 import com.example.fastlms_project.member.exception.MemberNotEmailAuthException;
 import com.example.fastlms_project.member.model.MemberRegister;
 import com.example.fastlms_project.member.repository.MemberRepository;
+import com.example.fastlms_project.report.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -131,4 +132,17 @@ public class MemberServiceImpl implements MemberService{
 
         return new User(member.getUserEmail(), member.getPassword(), grantedAuthorities);
     }
+
+    @Override
+    public MemberDto reportMemberInfo(String userEmail) {
+        Optional<Member> optionalMember  = memberRepository.findById(userEmail);
+        if (!optionalMember.isPresent()) {
+            return null;
+        }
+
+        Member member = optionalMember.get();
+
+        return MemberDto.of(member);
+    }
+
 }

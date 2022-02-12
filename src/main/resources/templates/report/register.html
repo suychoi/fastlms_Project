@@ -37,11 +37,11 @@
     <form method="post">
         <h2>신고인 기본정보</h2>
         <table>
-            <tbody>
+            <tbody th:each="x : ${member}">
             <tr>
                 <th>성명</th>
                 <td>
-                    <p th:text="${userInfo}"></p>
+                    <input th:value="${x.userName}" readonly>
                 </td>
             </tr>
             <tr>
@@ -49,7 +49,7 @@
                     이메일
                 </th>
                 <td>
-                    <p th:text="${userInfo}"></p>
+                    <input th:value="${userInfo}" readonly>
                 </td>
             </tr>
 
@@ -58,12 +58,14 @@
                     휴대전화 번호
                 </th>
                 <td>
-                    <p th:text="${userInfo}"></p>
+                    <input th:value="${x.userPhone}" readonly>
                 </td>
             </tr>
             </tbody>
         </table>
-        <h3>부당한 인터넷 표시 및 광고 확인방법</h3>
+        <div><h2>부당한 인터넷 표시 및 광고 확인방법</h2>
+             <span> * 표시는 필수 입력사항 입니다. </span>
+        </div>
         <table>
             <tbody>
             <tr>
@@ -189,7 +191,7 @@
             </tr>
             </tbody>
         </table>
-        <h3>피신고대상자(개업공인중개사 등)</h3>
+        <h2>피신고대상자(개업공인중개사 등)</h2>
         <table>
             <tbody>
             <tr>
