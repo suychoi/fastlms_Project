@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,11 +24,11 @@ public class ReportDto {
     String reporterName;
     String reporterPhone;
 
-    String reason;    //신고 사유
-    String checkRule;     //확인 방법(drop down)
+    String reason;          //신고 사유
+    String checkRule;       //확인 방법(drop down)
     String sourceUrl;       //출처
-    String sellNumber;    //매물 번호
-    String adress;    //매물 소재지
+    String sellNumber;      //매물 번호
+    String adress;          //매물 소재지
 
     LocalDateTime reportDate;       //등록일자
     String reportState;
@@ -102,10 +103,10 @@ public class ReportDto {
     return reportDtoList;
     }
 
-//    public String getCheckDtText() {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
-//        return checkDt != null ? checkDt.format(formatter) : "";
-//    }
+    public String getReportDateText() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        return reportDate != null ? reportDate.format(formatter) : "";
+    }
 //
 //    public String getCheckRegDtText() {
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");

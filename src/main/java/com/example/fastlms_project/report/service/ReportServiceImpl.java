@@ -2,12 +2,15 @@ package com.example.fastlms_project.report.service;
 
 import com.example.fastlms_project.report.dto.ReportDto;
 import com.example.fastlms_project.report.entity.Report;
+import com.example.fastlms_project.report.mapper.ReportMapper;
 import com.example.fastlms_project.report.model.ReportParam;
 import com.example.fastlms_project.report.model.ReportRegister;
 import com.example.fastlms_project.report.repository.ReportRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +19,7 @@ import java.util.Optional;
 public class ReportServiceImpl implements ReportService {
 
     private final ReportRepository reportRepository;
-//    private final ReportMapper reportMapper;
+    private final ReportMapper reportMapper;
 
     @Override
     public boolean reportRegister(ReportRegister parameter) {
@@ -47,6 +50,9 @@ public class ReportServiceImpl implements ReportService {
                 .reportContents(parameter.getReportContents())
                 .filename(parameter.getFilename())
                 .urlFilename(parameter.getUrlFilename())
+                .reportDate(LocalDateTime.now())
+                .reportState("미정")
+                .monitoringRule("미정")
                 .build();
 
         reportRepository.save(report);
@@ -65,7 +71,15 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<ReportDto> reportList(ReportParam param) {
+    public List<ReportDto> list(String userEmail) {
+
+        List<ReportDto> list = reportMapper.selectList(userEmail);
+
+        return list;
+    }
+
+    @Override
+    public List<ReportDto> reportDetail(ReportParam param) {
         return null;
     }
 

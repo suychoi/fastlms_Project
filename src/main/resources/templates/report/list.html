@@ -3,12 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <title>부동산 광고시장 감시센터</title>
+    <style>
+        .list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .list table th, .list table td {
+            border:solid 1px #000;
+        }
+
+        p.nothing {
+            text-align: center;
+            padding: 100px;
+        }
+
+        .list .buttons {
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .list  .buttons a,.list  .buttons button {
+            border-width: 0;
+            background-color: transparent;
+            text-decoration: underline;
+            font-size: 14px;
+            line-height: 20px;
+            height: 20px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .list .buttons .total-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .pager {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .pager a.on {
+            font-weight: bold;
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <h1>신고 조회 </h1>
+    <h1>나의 신고 조회 </h1>
     <div th:replace="/fragments/layout.html :: member-body-menu"></div>
-
-    <p th:text="${userInfo}"></p>
+        <div class="list">
+        <table>
+            <thead>
+            <tr>
+                <th> 접수일자 </th>
+                <th>
+                    피신고대상자 상호
+                </th>
+                <th>
+                    신고 사유
+                </th>
+                <th>
+                    모니터링 방법
+                </th>
+                <th>
+                    진행상태
+                </th>
+                <th>
+                    신고내역 확인
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="x : ${list}">
+                <td th:text="${x.getReportDateText}">-</td>
+                <td>
+                    <p th:text="${x.reportedName}">-</p>
+                </td>
+                <td>
+                    <p th:text="${x.reason}">-</p>
+                </td>
+                <td>
+                    <p th:text="${x.monitoringRule}">-</p>
+                </td>
+                <td>
+                    <p th:text="${x.reportState}">-</p>
+                </td>
+                <td>
+                    <p>
+                        <a th:href="'view.do?reportNumber=' + ${x.reportNumber}">상세내역</a>
+                    </p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
 </body>
 </html>

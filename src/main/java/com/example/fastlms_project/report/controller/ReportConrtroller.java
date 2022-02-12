@@ -2,45 +2,52 @@ package com.example.fastlms_project.report.controller;
 
 import com.example.fastlms_project.member.service.MemberService;
 import com.example.fastlms_project.report.dto.MemberDto;
+import com.example.fastlms_project.report.dto.ReportDto;
+import com.example.fastlms_project.report.model.ReportParam;
 import com.example.fastlms_project.report.model.ReportRegister;
 import com.example.fastlms_project.report.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import util.pager.BaseController;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor
 @Controller
-public class ReportConrtroller {
+public class ReportConrtroller extends BaseController {
 
     private final MemberService memberService;
     private final ReportService reportService;
 
     @RequestMapping("/report/list")
-    public String list(Principal principal, Model model){
+    public String list(Principal principal, Model model, ReportParam reportParam){
 
-        model.addAttribute("userInfo", principal.getName());
+        String userEmail = principal.getName();
+
+        List<ReportDto> reportDtoList = reportService.list(userEmail);
+
+        model.addAttribute("list", reportDtoList);
 
         return "/report/list";
     }
 
     @GetMapping("/report/register")
     public String register(Principal principal, Model model){
-
-
 
         String userEmail = principal.getName();
 

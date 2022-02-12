@@ -49,7 +49,7 @@ public class Report {
 
     private String reportState;
     private String monitoringRule;      //모니터링 방법법
-    private LocalDateTime reportDate;   //등록일자
+    private LocalDateTime reportDate;   //등록일자(접수일자)
     private LocalDateTime viewDate;     //확인 일자
     private LocalDateTime startDate;    //조사 일자
     private LocalDateTime doneDate;     //종료 일자
