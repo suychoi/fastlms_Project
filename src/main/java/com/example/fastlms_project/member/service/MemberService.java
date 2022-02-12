@@ -10,7 +10,7 @@ public interface MemberService extends UserDetailsService {
 
     boolean emailAuth(String uuid);
 
-    //신고 등록시 유저 정보 받아오기
+    //신고 등록시 유저 정보 받아오기 + admin
     MemberDto reportMemberInfo(String userEmail);
 
 }

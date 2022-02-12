@@ -2,11 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>부동산 광고시장 감시센터</title>
+    <title>부동산 광고시장 감시센터 관리자</title>
     <style>
         .detail table {
             width: 100%;
             border-collapse: collapse;
+            text-align: center;
         }
 
         .detail table th, .detail table td {
@@ -33,12 +34,59 @@
 <body>
 <h1>상세 신고 내용</h1>
 <hr>
-<div th:replace="/fragments/layout.html :: member-body-menu"></div>
+<div th:replace="/fragments/layout.html :: admin-body-menu"></div>
 
-<div class="detail">
-    <h2>신고내용 처리 이력</h2>
+<div class="detail" th:each="report : ${report}">
+    <h1>진행상태 변경</h1>
     <table>
-        <tbody th:each="report : ${list}">
+        <form method="post" enctype="multipart/form-data">
+            <tbody>
+            <tr>
+                <th>상태변경</th>
+                <th>담당자</th>
+                <th>모니터링</th>
+            </tr>
+            <tr>
+                <td>
+                    <select name="reportState" required>
+                        <option value=""> 필수선택 사항입니다.</option>
+                        <option value="진행 전">진행 전</option>
+                        <option value="조사 중">조사 중</option>
+                        <option value="처리완료">처리완료</option>
+                    </select>
+                </td>
+                <td>
+                    <input th:value="${member}" name="adUser" readonly>
+                </td>
+                <td>
+                    <select name="monitoringRule" required>
+                        <option value=""> 필수선택 사항입니다.</option>
+                        <option value="자율시정">자율시정</option>
+                        <option value="비자율시정">비자율시정</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="3">담당자의견</th>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <textarea th:text="${report.resultContents}" name="resultContents"
+                              style="width:98%; height:98%"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <button type="submit"> 상태 변경</button>
+                </td>
+            </tr>
+            </tbody>
+        </form>
+    </table>
+    <h1>신고처리 상세조회</h1>
+    <h3>신고내용 처리 이력</h3>
+    <table>
+        <tbody th:each="report : ${report}">
         <tr>
             <th>접수</th>
             <th>확인</th>
@@ -58,7 +106,7 @@
         </tbody>
     </table>
 
-    <h2>신고인 정보</h2>
+    <h3>신고인 정보</h3>
     <table>
         <tbody th:each="member : ${member}">
         <tr>
@@ -67,15 +115,15 @@
             <th>이메일</th>
         </tr>
         <tr>
-            <td th:text="${member.userName}">신고인</td>
-            <td th:text="${member.userPhone}">연락처</td>
-            <td th:text="${member.userEmail}">이메일</td>
+            <td th:text="${report.reporterName}">신고인</td>
+            <td th:text="${report.reporterPhone}">연락처</td>
+            <td th:text="${report.reporterId}">이메일</td>
         </tr>
         </tbody>
     </table>
-    <h2>피신고대상자</h2>
+    <h3>피신고대상자</h3>
     <table>
-        <tbody th:each="report : ${list}">
+        <tbody th:each="report : ${report}">
         <tr>
             <th>구분</th>
             <th>내용</th>
@@ -91,9 +139,9 @@
         </tbody>
     </table>
 
-    <h2>신고내용</h2>
+    <h3>신고내용</h3>
     <table>
-        <tbody th:each="report : ${list}">
+        <tbody th:each="report : ${report}">
         <tr>
             <th>구분</th>
             <th>내용</th>
@@ -128,16 +176,16 @@
         </tr>
         <tr>
             <th>증빙자료</th>
-            <td>
+            <th>
                 <a th:src="${report.urlFilename}">첨부파일</a>
-            </td>
+            </th>
         </tr>
         </tbody>
     </table>
 
     <h2>처리결과</h2>
     <table>
-        <tbody th:each="report : ${list}">
+        <tbody th:each="report : ${report}">
         <tr>
             <th>구분</th>
             <th>내용</th>
@@ -169,7 +217,7 @@
         </tbody>
     </table>
 </div>
-<a href="/report/list"> 목록 </a>
+<a href="/admin/report/list.do"> 목록 </a>
 
 </body>
 </html>

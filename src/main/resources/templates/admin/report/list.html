@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>부동산 광고시장 감시센터 관리자</title>
@@ -7,7 +7,6 @@
         .list table {
             width: 100%;
             border-collapse: collapse;
-            text-align: center;
         }
 
         .list table th, .list table td {
@@ -51,86 +50,84 @@
             color: red;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    window.onload=function (){
-        var result = [[${result}]];
-
-        if(result == true){
-            alert("삭제 했습니다.")
-            window.location.href = 'http://localhost:8080/admin/notice/list.do';
-        } else if(result == false){
-            alert("삭제에 실패했습니다..")
-            window.location.href = 'http://localhost:8080/admin/notice/list.do';
-        }
-    }
-    /*]]>*/
-</script>
 <body>
-<h1>공지사항 목록</h1>
+<h1>신고처리 관리 </h1>
 <div th:replace="/fragments/layout.html :: admin-body-menu"></div>
-
+<p class="total-count">전체 <span th:text="${totalCount}"></span>개</p>
 <div class="list">
-    <div class="buttons">
-        <p class="total-count">전체 <span th:text="${totalCount}"></span>개</p>
-        <a href="/admin/notice/register.do"> 글쓰기 </a>
-    </div>
-
     <table>
         <thead>
         <tr>
             <th>
-                번호
+                접수번호
             </th>
             <th>
-                상태
+                접수일자
             </th>
             <th>
-                제목
+                진행 상태
             </th>
             <th>
-                조회수
+                신고인
             </th>
             <th>
-                등록일시
+                피신고대상자 상호
             </th>
             <th>
-                삭제
+                피신고대상자 연락처
+            </th>
+            <th>
+                신고사유
+            </th>
+            <th>
+                모니터링
+            </th>
+            <th>
+                정보제공자
+            </th>
+            <th>
+                담당자
             </th>
         </tr>
         </thead>
-        <tbody id="dataLIst">
+        <tbody>
         <tr th:each="x : ${list}">
             <td>
-                <p th:text="${x.noticeNumber}">번호</p>
-            </td>
-            <td>
-                <p th:if="${x.noticeStatus eq false}">비공개</p>
-                <p th:if="${x.noticeStatus eq true}">공개</p>
-            </td>
-            <td>
                 <p>
-                    <a th:href="'edit.do?noticeNumber=' + ${x.noticeNumber}" th:text="${x.noticeTitle}">공지 제목</a>
+                    <a th:href="'/admin/report/manage.do?reportNumber=' + ${x.reportNumber}" th:text="${x.reportNumber}"></a>
                 </p>
             </td>
+            <td th:text="${x.getReportDateText}">-</td>
             <td>
-                <p th:text="${x.noticeViewCount}">조회수</p>
+                <p th:text="${x.reportState}">-</p>
             </td>
             <td>
-                <p th:text="${x.noticeRegDt}">등록일시</p>
+                <p th:text="${x.reporterName}">-</p>
             </td>
             <td>
-                <a th:href="'delete.do?noticeNumber=' + ${x.noticeNumber}">삭제</a>
+                <p th:text="${x.reportedName}">-</p>
+            </td>
+            <td>
+                <p th:text="${x.reportedPhone}">-</p>
+            </td>
+            <td>
+                <p th:text="${x.reason}">이유</p>
+            </td>
+            <td>
+                <p th:text="${x.monitoringRule}">-</p>
+            </td>
+            <td>
+                <p th:text="${x.platform}">-</p>
+            </td>
+            <td>
+                <p th:text="${x.adUser}">-</p>
             </td>
         </tr>
         </tbody>
     </table>
-
     <div class="pager" th:utext="${pager}"></div>
 
 </div>
-
 </body>
 </html>

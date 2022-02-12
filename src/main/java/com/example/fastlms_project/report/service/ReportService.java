@@ -17,14 +17,6 @@ public interface ReportService {
     //신고 상세목록 가져오기
     ReportDto reportDetail(int id);
 
-    //신고 수정
-    boolean reportEdit(ReportRegister parameter);
-
-    //신고 수정 세부내용
-    ReportDto reportGetDetail(int key);
-
-    //신고 삭제
-    boolean reportDelete(Integer deleteId);
-
 //Admin
+    List<ReportDto> allReportList(ReportParam reportParam);
 }

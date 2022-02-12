@@ -65,16 +65,6 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public boolean reportEdit(ReportRegister parameter) {
-        return false;
-    }
-
-    @Override
-    public ReportDto reportGetDetail(int key) {
-        return null;
-    }
-
-    @Override
     public List<ReportDto> list(String userEmail) {
 
         List<ReportDto> list = reportMapper.selectList(userEmail);
@@ -88,7 +78,20 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public boolean reportDelete(Integer deleteId) {
-        return false;
+    public List<ReportDto> allReportList(ReportParam reportParam) {
+        long totalCount = reportMapper.selectReportCount(reportParam);
+
+        List<ReportDto> list = reportMapper.selectReportList(reportParam);
+        if (!CollectionUtils.isEmpty(list)){
+            int i = 0;
+            for (ReportDto x : list){
+                x.setTotalCount(totalCount);
+                x.setSeq(totalCount - reportParam.getPageStart() - i);
+                i++;
+            }
+        }
+
+        return list;
     }
+
 }

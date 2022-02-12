@@ -8,8 +8,12 @@ import java.util.List;
 
 @Mapper
 public interface ReportMapper {
-    
-    long selectReportCount(String userEmail);
+    //회원 신고목록
     List<ReportDto> selectList(String userEmail);
-    
+
+    //전체 신고목록 수
+    long selectReportCount(ReportParam reportParam);
+
+    //전체 신고목록
+    List<ReportDto> selectReportList(ReportParam reportParam);
 }
