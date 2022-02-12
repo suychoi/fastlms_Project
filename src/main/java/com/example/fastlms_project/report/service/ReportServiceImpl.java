@@ -51,8 +51,12 @@ public class ReportServiceImpl implements ReportService {
                 .filename(parameter.getFilename())
                 .urlFilename(parameter.getUrlFilename())
                 .reportDate(LocalDateTime.now())
-                .reportState("미정")
-                .monitoringRule("미정")
+                .reportState("-")
+                .monitoringRule("-")
+                .adUser("-")
+                .resultContents("-")
+                .resultFile("-")
+                .resultFileUrl("-")
                 .build();
 
         reportRepository.save(report);
@@ -79,8 +83,8 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<ReportDto> reportDetail(ReportParam param) {
-        return null;
+    public ReportDto reportDetail(int id) {
+        return reportRepository.findById(id).map(ReportDto::of).orElse(null);
     }
 
     @Override

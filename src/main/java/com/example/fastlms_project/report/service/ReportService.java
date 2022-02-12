@@ -15,7 +15,7 @@ public interface ReportService {
     List<ReportDto> list(String userEmail);
 
     //신고 상세목록 가져오기
-    List<ReportDto> reportDetail(ReportParam param);
+    ReportDto reportDetail(int id);
 
     //신고 수정
     boolean reportEdit(ReportRegister parameter);

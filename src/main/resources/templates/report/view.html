@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>부동산 광고시장 감시센터</title>
+    <style>
+        .detail table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .detail table th, .detail table td {
+            border: solid 1px #000;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .buttons a, .buttons button {
+            border-width: 0;
+            background-color: transparent;
+            text-decoration: underline;
+            font-size: 14px;
+            line-height: 20px;
+            height: 20px;
+            color: #000;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>상세 신고 내용</h1>
+<hr>
+<div th:replace="/fragments/layout.html :: member-body-menu"></div>
+
+<div class="detail">
+    <h2>신고내용 처리 이력</h2>
+    <table>
+        <tbody th:each="report : ${list}">
+        <tr>
+            <th>접수</th>
+            <th>확인</th>
+            <th>반려</th>
+            <th>조사 중</th>
+            <th>보완요청</th>
+            <th>처리완료</th>
+        </tr>
+        <tr>
+            <th th:text="${report.getReportDateText}">접수</th>
+            <th th:text="${report.getViewDateText}">확인</th>
+            <th> -</th>
+            <th th:text="${report.getStartDateText}">조사 중</th>
+            <th> -</th>
+            <th th:text="${report.getDoneDateText}">처리완료</th>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>신고인 정보</h2>
+    <table>
+        <tbody th:each="member : ${member}">
+        <tr>
+            <th>신고인 성함</th>
+            <th>연락처</th>
+            <th>이메일</th>
+        </tr>
+        <tr>
+            <th th:text="${member.userName}">신고인</th>
+            <th th:text="${member.userPhone}">연락처</th>
+            <th th:text="${member.userEmail}">이메일</th>
+        </tr>
+        </tbody>
+    </table>
+    <h2>피신고대상자</h2>
+    <table>
+        <tbody th:each="report : ${list}">
+        <tr>
+            <th>구분</th>
+            <th>내용</th>
+        </tr>
+        <tr>
+            <th>기본정보</th>
+            <th th:text="${report.reportedName}">기본정보</th>
+        </tr>
+        <tr>
+            <th>소재지</th>
+            <th th:text="${report.reportedAdress}">소재지</th>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>신고내용</h2>
+    <table>
+        <tbody th:each="report : ${list}">
+        <tr>
+            <th>구분</th>
+            <th>내용</th>
+        </tr>
+        <tr>
+            <th>신고사유</th>
+            <th th:text="${report.reason}">신고사유</th>
+        </tr>
+        <tr>
+            <th>확인방법 및 출처</th>
+            <th th:text="${report.checkRule}">신고사유</th>
+        </tr>
+        <tr>
+            <th>부동산표시 및 광고매체</th>
+            <th th:text="${report.platform}">부동산표시 및 광고매체</th>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <th th:text="${report.sourceUrl}">URL</th>
+        </tr>
+        <tr>
+            <th>매물등록번호</th>
+            <th th:text="${report.sellNumber}">매물등록번호</th>
+        </tr>
+        <tr>
+            <th>매물 소재지</th>
+            <th th:text="${report.adress}">소재지</th>
+        </tr>
+        <tr>
+            <th>신고내용</th>
+            <th th:text="${report.reportContents}">신고내용</th>
+        </tr>
+        <tr>
+            <th>증빙자료</th>
+            <th>
+                <a th:src="${report.urlFilename}">첨부파일</a>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>처리결과</h2>
+    <table>
+        <tbody th:each="report : ${list}">
+        <tr>
+            <th>구분</th>
+            <th>내용</th>
+        </tr>
+        <tr>
+            <th>모니터링 방법</th>
+            <th th:text="${report.monitoringRule}">모니터링 방법</th>
+        </tr>
+        <tr>
+            <th>이행일자</th>
+            <th th:text="${report.getStartDateText}">이행일자</th>
+        </tr>
+        <tr>
+            <th>확인자</th>
+            <th th:text="${report.adUser}">확인자</th>
+        </tr>
+        <tr>
+            <th>점검일자</th>
+            <th th:text="${report.adDate}">점검일자</th>
+        </tr>
+        <tr>
+            <th>처리결과</th>
+            <th th:text="${report.resultContents}">처리결과</th>
+        </tr>
+        <tr>
+            <th>첨부파일</th>
+            <th th:text="${report.resultFileUrl}">처리결과</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<a href="/report/list"> 목록 </a>
+
+</body>
+</html>

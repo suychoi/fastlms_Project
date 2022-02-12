@@ -56,12 +56,23 @@ public class ReportDto {
     String dealType;
     String intermediary;
 
+    String adUser;            //확인자
+    LocalDateTime adDate;            //점검일자
+    String resultContents;    //처리결과
+    String resultFile;        //첨부파일
+    String resultFileUrl;        //첨부파일URL
+
     long totalCount;
     long seq;
 
     public static ReportDto of(Report report){
         return ReportDto.builder()
                 .reportNumber(report.getReportNumber())
+                .adUser(report.getAdUser())
+                .adDate(report.getAdDate())
+                .resultContents(report.getResultContents())
+                .resultFile(report.getResultFile())
+                .resultFileUrl(report.getResultFileUrl())
                 .checkDt(report.getCheckDt())
                 .checkRegDt(report.getCheckRegDt())
                 .platform(report.getPlatform())
@@ -107,9 +118,19 @@ public class ReportDto {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         return reportDate != null ? reportDate.format(formatter) : "";
     }
-//
-//    public String getCheckRegDtText() {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
-//        return checkRegDt != null ? checkRegDt.format(formatter) : "";
-//    }
+
+    public String getViewDateText() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        return viewDate != null ? viewDate.format(formatter) : "";
+    }
+
+    public String getStartDateText() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        return startDate != null ? startDate.format(formatter) : "";
+    }
+
+    public String getDoneDateText() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        return doneDate != null ? doneDate.format(formatter) : "";
+    }
 }

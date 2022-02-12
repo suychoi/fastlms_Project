@@ -5,5 +5,5 @@ import lombok.Data;
 
 @Data
 public class ReportParam extends CommonParam {
-    String reportNumber;
+    int reportNumber;
 }

@@ -40,8 +40,10 @@ public class ReportConrtroller extends BaseController {
         String userEmail = principal.getName();
 
         List<ReportDto> reportDtoList = reportService.list(userEmail);
+        MemberDto member = memberService.reportMemberInfo(userEmail);
 
         model.addAttribute("list", reportDtoList);
+        model.addAttribute("member", member);
 
         return "/report/list";
     }
@@ -94,6 +96,21 @@ public class ReportConrtroller extends BaseController {
 
         return "/report/register-complete";
     }
+
+    @GetMapping("/report/view")
+    public String reportView(Principal principal, Model model, ReportParam reportParam){
+
+        int id = reportParam.getReportNumber();
+
+        ReportDto report = reportService.reportDetail(id);
+        MemberDto member = memberService.reportMemberInfo(principal.getName());
+
+        model.addAttribute("list", report);
+        model.addAttribute("member", member);
+
+        return "/report/view";
+    }
+
 
     private String[] getNewSaveFile(String baseLocalPath, String baseUrlPath, String originalFilename) {
 

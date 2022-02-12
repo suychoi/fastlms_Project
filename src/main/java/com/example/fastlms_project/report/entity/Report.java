@@ -35,28 +35,36 @@ public class Report {
     private String platform;            //중개플랫폼 업체
     private String dealType;                //거래형태
     private String intermediary;                //중개대상물 종류
-
     private String reason;              //신고 사유
-
     private String sourceUrl;                 //출처
     private String sellNumber;          //매물 번호
     private String adress;              //매물 소재지
 
+    @Column(length = 1000)
+    private String reportContents;      //신고내용
+
+    private String filename;        //파일 절대경로
+    private String urlFilename;     //파일 상대 경로
+
+    //피신고대상자
     private String reportedClass;       //광고 행위자
     private String reportedName;        //피신고대상자 상호
     private String reportedPhone;       //피신고대상자 휴대폰번호
     private String reportedAdress;      //피신고 대상자 소재지
 
+    //AD
     private String reportState;
-    private String monitoringRule;      //모니터링 방법법
+    private String monitoringRule;      //모니터링 방법
     private LocalDateTime reportDate;   //등록일자(접수일자)
-    private LocalDateTime viewDate;     //확인 일자
-    private LocalDateTime startDate;    //조사 일자
-    private LocalDateTime doneDate;     //종료 일자
+    private LocalDateTime viewDate;     //확인 일자(본 일자)
+    private LocalDateTime startDate;    //조사 일자(시작)
+    private LocalDateTime doneDate;     //종료 일자(종료)
 
-    @Column(length = 1000)
-    private String reportContents;      //신고내용
+    private String adUser;            //확인자
+    private LocalDateTime adDate;            //점검일자
+    private String resultContents;    //처리결과
+    private String resultFile;        //첨부파일
+    private String resultFileUrl;        //첨부파일URL
 
-    private String filename;        // 파일 절대경로
-    private String urlFilename;     //파일 상대 경로
+
 }
