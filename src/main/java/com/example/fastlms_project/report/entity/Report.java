@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,15 +18,19 @@ import java.time.LocalDateTime;
 public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String reportNumber;
+    private int reportNumber;
 
     private String reporterId;
     private String reporterName;
     private String reporterPhone;
 
     private String checkRule;               //확인 방법(drop down)
-    private LocalDateTime checkDt;      //신고인 확인 일시
-    private LocalDateTime checkRegDt;   //매물등록일
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date checkDt;      //신고인 확인 일시
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date checkRegDt;   //매물등록일
 
     private String platform;            //중개플랫폼 업체
     private String dealType;                //거래형태
@@ -48,6 +54,9 @@ public class Report {
     private LocalDateTime startDate;    //조사 일자
     private LocalDateTime doneDate;     //종료 일자
 
+    @Column(length = 1000)
     private String reportContents;      //신고내용
-    private String reportFile;
+
+    private String filename;        // 파일 절대경로
+    private String urlFilename;     //파일 상대 경로
 }

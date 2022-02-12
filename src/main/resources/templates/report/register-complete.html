@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>부동산 광고시장 감시센터</title>
+</head>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    window.onload=function (){
+    var result = [[${result}]];
+
+        if(result == true){
+            alert("성공적으로 신고 했습니다.")
+            window.location.href = 'http://localhost:8080/report/list';
+        } else if(result == false){
+            alert("신고에 실패했습니다..")
+            window.location.href = 'http://localhost:8080/report/list';
+        }
+    }
+    /*]]>*/
+</script>
+<body>
+<h1>신고 결과</h1>
+</div>
+</body>
+</html>

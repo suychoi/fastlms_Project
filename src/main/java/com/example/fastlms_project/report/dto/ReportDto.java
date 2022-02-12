@@ -5,9 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
@@ -15,7 +17,7 @@ import java.util.List;
 @Builder
 @Data
 public class ReportDto {
-    String reportNumber;
+    int reportNumber;
 
     String reporterId;
     String reporterName;
@@ -40,16 +42,21 @@ public class ReportDto {
     String reportedAdress;  //피신고 대상자 소재지
 
     String reportContents;  //신고내용
-    String reportFile;
 
-    long totalCount;
-    long seq;
+    String filename;
+    String urlFilename;
 
-    LocalDateTime checkDt;
-    LocalDateTime checkRegDt;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    Date checkDt;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    Date checkRegDt;
     String platform;
     String dealType;
     String intermediary;
+
+    long totalCount;
+    long seq;
 
     public static ReportDto of(Report report){
         return ReportDto.builder()
@@ -78,7 +85,8 @@ public class ReportDto {
                 .reportedPhone(report.getReportedPhone())
                 .reportedAdress(report.getReportedAdress())
                 .reportContents(report.getReportContents())
-                .reportFile(report.getReportFile())
+                .filename(report.getFilename())
+                .urlFilename(report.getUrlFilename())
                 .build();
     }
 
@@ -93,4 +101,14 @@ public class ReportDto {
         }
     return reportDtoList;
     }
+
+//    public String getCheckDtText() {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
+//        return checkDt != null ? checkDt.format(formatter) : "";
+//    }
+//
+//    public String getCheckRegDtText() {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
+//        return checkRegDt != null ? checkRegDt.format(formatter) : "";
+//    }
 }

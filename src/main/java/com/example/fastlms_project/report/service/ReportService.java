@@ -1,6 +1,5 @@
 package com.example.fastlms_project.report.service;
 
-import com.example.fastlms_project.report.dto.MemberDto;
 import com.example.fastlms_project.report.dto.ReportDto;
 import com.example.fastlms_project.report.model.ReportParam;
 import com.example.fastlms_project.report.model.ReportRegister;
@@ -10,7 +9,6 @@ import java.util.List;
 public interface ReportService {
     //신고 등록
     boolean reportRegister(ReportRegister parameter);
-
 
     //신고 수정
     boolean reportEdit(ReportRegister parameter);

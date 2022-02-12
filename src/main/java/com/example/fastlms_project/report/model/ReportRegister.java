@@ -2,36 +2,45 @@ package com.example.fastlms_project.report.model;
 
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @ToString
 @Data
 public class ReportRegister {
-    private String reportNumber;
+    int reportNumber;
 
-    private String reporterId;
-    private String reporterName;
-    private String reporterPhone;
+    String reporterId;
+    String reporterName;
+    String reporterPhone;
 
-    private String checkRule;               //확인 방법(drop down)
-    private LocalDateTime checkDt;      //신고인 확인 일시     //추가
-    private LocalDateTime checkRegDt;   //매물등록일             //추가
-    private String platform;            //중개플랫폼 업체  //추가
-    private String dealType;                //거래형태      //추가
-    private String intermediary;                //중개대상물 종류      //추가
+    String checkRule;               //확인 방법(drop down)
 
-    private String reason;              //신고 사유
-    private String sellNumber;          //매물 번호
-    private String sourceUrl;                 //출처
-    private String adress;              //매물 소재지
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    Date checkDt;      //신고인 확인 일시
 
-    private String reportedClass;       //피신고대상자 구분
-    private String reportedName;        //피신고대상자 상호
-    private String reportedPhone;       //피신고대상자 휴대폰번호
-    private String reportedAdress;      //피신고 대상자 소재지
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    Date checkRegDt;   //매물등록일
 
-    private String reportContents;      //신고내용
-    private String reportFile;
+    String platform;            //중개플랫폼 업체
+    String dealType;                //거래형태
+    String intermediary;                //중개대상물 종류
+
+    String reason;              //신고 사유
+    String sellNumber;          //매물 번호
+    String sourceUrl;                 //출처
+    String adress;              //매물 소재지
+
+    String reportedClass;       //피신고대상자 구분
+    String reportedName;        //피신고대상자 상호
+    String reportedPhone;       //피신고대상자 휴대폰번호
+    String reportedAdress;      //피신고 대상자 소재지
+
+    String reportContents;      //신고내용
+
+    //파일 저장
+    String filename;
+    String urlFilename;
 }
 
