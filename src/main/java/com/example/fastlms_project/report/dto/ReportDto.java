@@ -22,8 +22,8 @@ public class ReportDto {
     String reporterPhone;
 
     String reason;    //신고 사유
-    String check;     //확인 방법(drop down)
-    String url;       //출처
+    String checkRule;     //확인 방법(drop down)
+    String sourceUrl;       //출처
     String sellNumber;    //매물 번호
     String adress;    //매물 소재지
 
@@ -69,8 +69,8 @@ public class ReportDto {
                 .reporterName(report.getReporterName())
                 .reporterPhone(report.getReporterPhone())
                 .reason(report.getReason())
-                .check(report.getCheck())
-                .url(report.getUrl())
+                .checkRule(report.getCheckRule())
+                .sourceUrl(report.getSourceUrl())
                 .sellNumber(report.getSellNumber())
                 .adress(report.getAdress())
                 .reportedClass(report.getReportedClass())

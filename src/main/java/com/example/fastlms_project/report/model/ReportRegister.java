@@ -14,7 +14,7 @@ public class ReportRegister {
     private String reporterName;
     private String reporterPhone;
 
-    private String check;               //확인 방법(drop down)
+    private String checkRule;               //확인 방법(drop down)
     private LocalDateTime checkDt;      //신고인 확인 일시     //추가
     private LocalDateTime checkRegDt;   //매물등록일             //추가
     private String platform;            //중개플랫폼 업체  //추가
@@ -23,7 +23,7 @@ public class ReportRegister {
 
     private String reason;              //신고 사유
     private String sellNumber;          //매물 번호
-    private String url;                 //출처
+    private String sourceUrl;                 //출처
     private String adress;              //매물 소재지
 
     private String reportedClass;       //피신고대상자 구분
