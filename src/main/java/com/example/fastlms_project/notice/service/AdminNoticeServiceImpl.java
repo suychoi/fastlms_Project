@@ -1,11 +1,11 @@
-package com.example.fastlms_project.admin.notice.service;
+package com.example.fastlms_project.notice.service;
 
-import com.example.fastlms_project.admin.notice.dto.NoticeDto;
-import com.example.fastlms_project.admin.notice.model.NoticeRegister;
-import com.example.fastlms_project.admin.notice.repository.NoticeRepository;
-import com.example.fastlms_project.admin.notice.entity.Notice;
-import com.example.fastlms_project.admin.notice.mapper.NoticeMapper;
-import com.example.fastlms_project.admin.notice.model.NoticeParam;
+import com.example.fastlms_project.notice.dto.NoticeDto;
+import com.example.fastlms_project.notice.model.NoticeRegister;
+import com.example.fastlms_project.notice.repository.NoticeRepository;
+import com.example.fastlms_project.notice.entity.Notice;
+import com.example.fastlms_project.notice.mapper.NoticeMapper;
+import com.example.fastlms_project.notice.model.NoticeParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class NoticeServiceImpl implements NoticeService {
+public class AdminNoticeServiceImpl implements AdminNoticeService {
 
     private final NoticeRepository noticeRepository;
     private final NoticeMapper noticeMapper;

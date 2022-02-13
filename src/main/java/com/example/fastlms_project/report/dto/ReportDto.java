@@ -133,4 +133,9 @@ public class ReportDto {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         return doneDate != null ? doneDate.format(formatter) : "";
     }
+
+    public String getAdDateText() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        return adDate != null ? adDate.format(formatter) : "";
+    }
 }

@@ -1,10 +1,9 @@
-package com.example.fastlms_project.admin.notice.controller;
+package com.example.fastlms_project.notice.controller;
 
-import com.example.fastlms_project.admin.mail.model.MailRegister;
-import com.example.fastlms_project.admin.notice.dto.NoticeDto;
-import com.example.fastlms_project.admin.notice.model.NoticeParam;
-import com.example.fastlms_project.admin.notice.model.NoticeRegister;
-import com.example.fastlms_project.admin.notice.service.NoticeService;
+import com.example.fastlms_project.notice.dto.NoticeDto;
+import com.example.fastlms_project.notice.model.NoticeParam;
+import com.example.fastlms_project.notice.model.NoticeRegister;
+import com.example.fastlms_project.notice.service.AdminNoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,15 +18,15 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-public class NoticeConrtroller extends BaseController {
+public class AdminNoticeConrtroller extends BaseController {
 
-    private final NoticeService noticeService;
+    private final AdminNoticeService adminNoticeService;
 
     @RequestMapping("/admin/notice/list.do")
     public String list(Model model, NoticeParam parameter){
 
         parameter.init();
-        List<NoticeDto> NoticeDto = noticeService.noticeList(parameter);
+        List<NoticeDto> NoticeDto = adminNoticeService.noticeList(parameter);
 
         long totalCount = 0;
         if(!CollectionUtils.isEmpty(NoticeDto)){
@@ -52,7 +51,7 @@ public class NoticeConrtroller extends BaseController {
 
         if (editMode) {
             int key = parameter.getNoticeNumber();
-            NoticeDto existNotice = noticeService.noticeGetDetail(key);
+            NoticeDto existNotice = adminNoticeService.noticeGetDetail(key);
             if(existNotice == null){
                 //나중에 에러처리 만들어야 함
                 model.addAttribute("message", "공지사항 정보가 없습니다.");
@@ -74,19 +73,19 @@ public class NoticeConrtroller extends BaseController {
 
         if(editMode){
             Integer key = parameter.getNoticeNumber();
-            NoticeDto existNotice = noticeService.noticeGetDetail(key);
+            NoticeDto existNotice = adminNoticeService.noticeGetDetail(key);
             if (existNotice == null){
                 model.addAttribute("message", "공지사항이 존재하지 않습니다.");
                 return "error/error";
             }
 
-            boolean result = noticeService.noticeEdit(parameter);
+            boolean result = adminNoticeService.noticeEdit(parameter);
             model.addAttribute("result", result);
             return "/admin/notice/register-complete";
 
         } else {
 
-            boolean result = noticeService.noticeRegister(parameter);
+            boolean result = adminNoticeService.noticeRegister(parameter);
             model.addAttribute("result", result);
             return "/admin/notice/register-complete";
         }
@@ -95,7 +94,7 @@ public class NoticeConrtroller extends BaseController {
     @GetMapping("/admin/notice/delete.do")
     public String deleteMail(Model model, NoticeRegister parameter){
 
-        boolean result = noticeService.noticeDelete(parameter.getNoticeNumber());
+        boolean result = adminNoticeService.noticeDelete(parameter.getNoticeNumber());
         model.addAttribute("result", result);
 
         return "/admin/notice/list";

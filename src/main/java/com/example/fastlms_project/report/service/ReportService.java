@@ -1,6 +1,7 @@
 package com.example.fastlms_project.report.service;
 
 import com.example.fastlms_project.report.dto.ReportDto;
+import com.example.fastlms_project.report.model.ReportManage;
 import com.example.fastlms_project.report.model.ReportParam;
 import com.example.fastlms_project.report.model.ReportRegister;
 
@@ -19,4 +20,6 @@ public interface ReportService {
 
 //Admin
     List<ReportDto> allReportList(ReportParam reportParam);
+
+    boolean reportManage(ReportManage parameter);
 }

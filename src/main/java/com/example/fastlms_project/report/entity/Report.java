@@ -60,8 +60,10 @@ public class Report {
     private LocalDateTime startDate;    //조사 일자(시작)
     private LocalDateTime doneDate;     //종료 일자(종료)
 
-    private String adUser;            //확인자
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime adDate;            //점검일자
+
+    private String adUser;            //확인자
     private String resultContents;    //처리결과
     private String resultFile;        //첨부파일
     private String resultFileUrl;        //첨부파일URL

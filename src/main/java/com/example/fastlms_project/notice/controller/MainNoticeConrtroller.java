@@ -1,8 +1,8 @@
-package com.example.fastlms_project.main.notice.controller;
+package com.example.fastlms_project.notice.controller;
 
-import com.example.fastlms_project.admin.notice.dto.NoticeDto;
-import com.example.fastlms_project.admin.notice.model.NoticeParam;
-import com.example.fastlms_project.main.notice.service.MainNoticeService;
+import com.example.fastlms_project.notice.dto.NoticeDto;
+import com.example.fastlms_project.notice.model.NoticeParam;
+import com.example.fastlms_project.notice.service.MainNoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

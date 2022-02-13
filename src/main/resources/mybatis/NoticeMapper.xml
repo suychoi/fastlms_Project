@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.fastlms_project.admin.notice.mapper.NoticeMapper">
+<mapper namespace="com.example.fastlms_project.notice.mapper.NoticeMapper">
 
-    <select id="noticeList" resultType="com.example.fastlms_project.admin.notice.dto.NoticeDto">
+    <select id="noticeList" resultType="com.example.fastlms_project.notice.dto.NoticeDto">
         select *
         from notice
         where 1 = 1
@@ -16,7 +16,7 @@
         where 1 = 1
     </select>
 
-    <select id="mainNoticeList" resultType="com.example.fastlms_project.admin.notice.dto.NoticeDto">
+    <select id="mainNoticeList" resultType="com.example.fastlms_project.notice.dto.NoticeDto">
         select *
         from notice
         where notice_status = 1

@@ -1,7 +1,7 @@
-package com.example.fastlms_project.admin.notice.mapper;
+package com.example.fastlms_project.notice.mapper;
 
-import com.example.fastlms_project.admin.notice.dto.NoticeDto;
-import com.example.fastlms_project.admin.notice.model.NoticeParam;
+import com.example.fastlms_project.notice.dto.NoticeDto;
+import com.example.fastlms_project.notice.model.NoticeParam;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

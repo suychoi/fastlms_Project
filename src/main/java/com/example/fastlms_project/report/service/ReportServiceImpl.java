@@ -3,6 +3,7 @@ package com.example.fastlms_project.report.service;
 import com.example.fastlms_project.report.dto.ReportDto;
 import com.example.fastlms_project.report.entity.Report;
 import com.example.fastlms_project.report.mapper.ReportMapper;
+import com.example.fastlms_project.report.model.ReportManage;
 import com.example.fastlms_project.report.model.ReportParam;
 import com.example.fastlms_project.report.model.ReportRegister;
 import com.example.fastlms_project.report.repository.ReportRepository;
@@ -92,6 +93,34 @@ public class ReportServiceImpl implements ReportService {
         }
 
         return list;
+    }
+
+    @Override
+    public boolean reportManage(ReportManage parameter) {
+        Optional<Report> optionalReport = reportRepository.findById(parameter.getReportNumber());
+        if (!optionalReport.isPresent()) {
+            return false;
+        }
+        String stat = parameter.getReportState();
+
+        Report report = optionalReport.get();
+        report.setAdUser(parameter.getAdUser());
+        report.setMonitoringRule(parameter.getMonitoringRule());
+        report.setResultContents(parameter.getResultContents());
+        report.setAdDate(LocalDateTime.now());
+        report.setReportState(stat);
+
+        if(stat == "진행 전"){
+            report.setViewDate(LocalDateTime.now());
+        } else if (stat == "조사 중"){
+            report.setStartDate(LocalDateTime.now());
+        } else if (stat == "처리완료"){
+            report.setDoneDate(LocalDateTime.now());
+        }
+
+        reportRepository.save(report);
+
+        return true;
     }
 
 }
