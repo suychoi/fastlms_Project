@@ -57,6 +57,8 @@ public class ReportDto {
     String intermediary;
 
     String adUser;            //확인자
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDateTime adDate;            //점검일자
     String resultContents;    //처리결과
     String resultFile;        //첨부파일
